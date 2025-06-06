@@ -238,6 +238,8 @@ class GaugeView extends ChartView {
         const tickLineStyle = tickModel.getModel('lineStyle').getLineStyle();
 
         const splitLineDistance = splitLineModel.get('distance');
+        const showMinLine = splitLineModel.get('showMinLine') !== false;
+        const showMaxLine = splitLineModel.get('showMaxLine') !== false;
 
         let unitX;
         let unitY;
@@ -246,7 +248,9 @@ class GaugeView extends ChartView {
             unitX = Math.cos(angle);
             unitY = Math.sin(angle);
             // Split line
-            if (splitLineModel.get('show')) {
+            if (splitLineModel.get('show')
+                && !(i === 0 && !showMinLine)
+                && !(i === splitNumber && !showMaxLine)) {
                 const distance = splitLineDistance ? splitLineDistance + axisLineWidth : axisLineWidth;
                 const splitLine = new graphic.Line({
                     shape: {
