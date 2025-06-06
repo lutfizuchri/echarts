@@ -156,6 +156,8 @@ export interface GaugeSeriesOption extends SeriesOption<GaugeStateOption, GaugeS
          */
         length?: number
         distance?: number
+        showMinLine?: boolean
+        showMaxLine?: boolean
         lineStyle?: LineStyleOption
     }
 
@@ -238,6 +240,8 @@ class GaugeSeriesModel extends SeriesModel<GaugeSeriesOption> {
             // 属性length控制线长
             length: 10,
             distance: 10,
+            showMinLine: true,
+            showMaxLine: true,
             // 属性lineStyle（详见lineStyle）控制线条样式
             lineStyle: {
                 color: '#63677A',
